@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center">
+            <p class="display-4">
+                Weather Dashboard
+            </p>
+        </div>
+    </div>
+        <div class="col-3 bg-light">
+            <h3>Search for a city:</h3>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary fas fa-search" type="button" id="button-addon2"></button>
+                </div>
+            </div>
+            <ul class="list-group"></ul>
+        </div>
+        <div class="container col-9">
+            <div class="row card">
+                <div id="current" class="card-body"></div>
+            </div>
+        <div id="5day" class="row"></div>
+    
+
+</body>
+</html>
