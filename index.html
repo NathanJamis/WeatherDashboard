@@ -7,31 +7,95 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+    crossorigin="anonymous">
+    </script>
 </head>
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container text-center">
-            <p class="display-4">
-                Weather Dashboard
-            </p>
-        </div>
-    </div>
-        <div class="col-3 bg-light">
-            <h3>Search for a city:</h3>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
-                <div class="input-group-append">
-                  <button class="btn btn-primary fas fa-search" type="button" id="button-addon2"></button>
+    <div class="container-fluid">
+        <nav class="navbar bg-dark justify-content-center">
+            <h1 class="text-white">Weather Dashboard</h1>
+        </nav>
+        <div class="row">
+            <div class="col-lg-4 bg-light">
+                <div id="sidebar" class="card-body">
+                    <h4 class="card-title">Search for a city:</h4>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="button" id="searchButton">
+                              <i class="fas fa-search"></i>
+                          </button>
+                        </div>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">Chicago</li>
+                        <li class="list-group-item">New York</li>
+                        <li class="list-group-item">San Francisco</li>
+                    </ul>
                 </div>
             </div>
-            <ul class="list-group"></ul>
-        </div>
-        <div class="container col-9">
-            <div class="row card">
-                <div id="current" class="card-body"></div>
+        
+        <div class="col-lg-8">
+            <div class="row">
+                <div id="current" class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Placeholder</h2>
+                        <p class="card-text temp">Temperature:</p>
+                        <p class="card-text humidity">Humidity:</p>
+                        <p class="card-text wind">Wind Speed:</p>
+                        <p class="card-text uv">UV Index</p>
+                    </div>
+                </div>                              
             </div>
-        <div id="5day" class="row"></div>
-    
+            <div id="5day" class="row">
+                <div class="card bg-primary text-white mb-3" style="max-width: 18rem;">
+                    <div id="day1" class="card-header"></div>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text temp1"></p>
+                        <p class="card-text humidity1"></p>
+                    </div>
+                </div>
+                <div class="card bg-primary text-white mb-3" style="max-width: 18rem;">
+                    <div id="day2" class="card-header"></div>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text temp2"></p>
+                        <p class="card-text humidity2"></p>
+                    </div>
+                </div>
+                <div class="card bg-primary text-white mb-3" style="max-width: 18rem;">
+                    <div id="day3" class="card-header"></div>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text temp3"></p>
+                        <p class="card-text humidity3"></p>
+                    </div>
+                </div>
+                <div class="card bg-primary text-white mb-3" style="max-width: 18rem;">
+                    <div id="day4" class="card-header"></div>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text temp4"></p>
+                        <p class="card-text humidity4"></p>
+                    </div>
+                </div>
+                <div class="card bg-primary text-white mb-3" style="max-width: 18rem;">
+                    <div id="day5" class="card-header"></div>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text temp5"></p>
+                        <p class="card-text humidity5"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
