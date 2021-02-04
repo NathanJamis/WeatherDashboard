@@ -49,7 +49,8 @@ $(document).ready(function() {
                 var temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " F");
                 var img  = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
 
-                cardBody.append(title, img, temp, humid, wind)
+                title.append(img);
+                cardBody.append(title, temp, humid, wind)
                 card.append(cardBody);
                 $('#current').append(card);
 
@@ -83,51 +84,52 @@ $(document).ready(function() {
             url: "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey + "&units=imperial",
             dataType: "json",
             success: function(data) {
+                console.log(data);
                 $("#5day").show();
 
-                var day1 = $(".day1").text(data.list[0].dt_text);
+                var day1 = $(".day1").text(data.list[0].dt_txt);
                 $(".day1").append(day1);
 
-                var temp1 = $(".temp1").text(data.list[0].main.temp);
+                var temp1 = $(".temp1").text("Temp: " + data.list[0].main.temp + " F");
                 $(".temp1").append(temp1);
 
-                var humidity1 = $(".humidity1").text(data.list[0].main.humidity);
+                var humidity1 = $(".humidity1").text("Humidity: " + data.list[0].main.humidity + "%");
                 $(".humidity1").append(humidity1);
 
-                var day2 = $(".day2").text(data.list[9].dt_text);
+                var day2 = $(".day2").text(data.list[9].dt_txt);
                 $(".day2").append(day1);
 
-                var temp2 = $(".temp2").text(data.list[9].main.temp);
+                var temp2 = $(".temp2").text("Temp: " + data.list[9].main.temp + " F");
                 $(".temp2").append(temp1);
 
-                var humidity2 = $(".humidity2").text(data.list[9].main.humidity);
+                var humidity2 = $(".humidity2").text("Humidity: " + data.list[9].main.humidity + "%");
                 $(".humidity2").append(humidity1);
 
-                var day3 = $(".day3").text(data.list[17].dt_text);
+                var day3 = $(".day3").text(data.list[17].dt_txt);
                 $(".day3").append(day1);
 
-                var temp3 = $(".temp3").text(data.list[17].main.temp);
+                var temp3 = $(".temp3").text("Temp: " + data.list[17].main.temp + " F");
                 $(".temp3").append(temp1);
 
-                var humidity3 = $(".humidity3").text(data.list[17].main.humidity);
+                var humidity3 = $(".humidity3").text("Humidity: " + data.list[17].main.humidity + "%");
                 $(".humidity3").append(humidity1);
 
-                var day4 = $(".day4").text(data.list[25].dt_text);
+                var day4 = $(".day4").text(data.list[25].dt_txt);
                 $(".day4").append(day1);
 
-                var temp4 = $(".temp4").text(data.list[25].main.temp);
+                var temp4 = $(".temp4").text("Temp: " + data.list[25].main.temp + " F");
                 $(".temp4").append(temp1);
 
-                var humidity4 = $(".humidity4").text(data.list[25].main.humidity);
+                var humidity4 = $(".humidity4").text("Humidity: " + data.list[25].main.humidity + "%");
                 $(".humidity4").append(humidity1);
 
-                var day5 = $(".day5").text(data.list[33].dt_text);
+                var day5 = $(".day5").text(data.list[33].dt_txt);
                 $(".day5").append(day1);
 
-                var temp5 = $(".temp5").text(data.list[33].main.temp);
+                var temp5 = $(".temp5").text("Temp: " + data.list[33].main.temp + " F");
                 $(".temp5").append(temp1);
 
-                var humidity5 = $(".humidity5").text(data.list[33].main.humidity);
+                var humidity5 = $(".humidity5").text("Humidity: " + data.list[33].main.humidity + "%");
                 $(".humidity5").append(humidity1);
             }
         })
