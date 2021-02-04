@@ -34,12 +34,12 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 // create history link for this search 
-                if (history.indexOf(searchValue) === -1) {
-                    history.push(searchValue);
-                    window.localStorage.setItem("history", JSON.stringify(history));
+                // if (history.indexOf(searchValue) === -1) {
+                //     history.push(searchValue);
+                //     window.localStorage.setItem("history", JSON.stringify(history));
 
-                    makeRow(searchValue)
-                }
+                //     makeRow(searchValue)
+                // }
                 // clear old content 
                 $("#current").empty();
 
@@ -48,26 +48,51 @@ $(document).ready(function() {
                 var cardBody = $("<div>").addClass("card-body");
                 var card = $("<div>").addClass("card");
 
-                var wind = $("<p>").addClass("card-text").text(" Wind Speed: " + data.wind.speed + " MPH");
+                var wind = $("<p>").addClass("card-text").text("Wind Speed: " + data.wind.speed + " MPH");
                 var humid = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + "%");
                 var temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " F");
                 var img  = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
 
                 // merge and add to the page
-                title.append(img);
-                cardBody.append(title, temp, humid, wind)
+                cardBody.append(title, img, temp, humid, wind)
                 card.append(cardBody);
                 $('#current').append(card);
 
+                var lat = data.coord.lat;
+                var lon = data.coord.lon
+
+                function getUV(lat, lon) {
+                    $.ajax({
+                        type: "GET",
+                        url: "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey,
+                        dataType: "json",
+                        success: function(data) {
+                            var uvIndex = $("<p>").addClass("card-text").text("UV Index: " + data.value);
+
+                            cardBody.append(uvIndex)
+                        }
+                    })
+                };
+
                 // call follow-up api endpoints
-                get5Day(searchValue);
+                // get5Day(searchValue);
                 getUV(data.coord.lat, data.coord.lon);
-
             } 
+        });
+    };
+    
+    function get5Day(searchValue) {
+        $.ajax({
+            type: "GET",
+            url: "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey + "&units=imperial",
+            dataType: "json",
+            success: function(data) {
 
-         });
-        }
+            }
+        })
+    };
 
+    
 
 
 
@@ -80,23 +105,23 @@ $(document).ready(function() {
     //     })
     // };
 
-    function get5Day(searchValue) {
-        var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey
-        fetch(forecastUrl).then(function(response) {
-            return response.json()
-        }).then(function(data) {
-            console.log(data)
-        })
-    };
+    // function get5Day(searchValue) {
+    //     var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey
+    //     fetch(forecastUrl).then(function(response) {
+    //         return response.json()
+    //     }).then(function(data) {
+    //         console.log(data)
+    //     })
+    // };
 
-    function getUV(searchValue) {
-        var uvUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey
-        fetch(uvUrl).then(function(response) {
-            return response.json()
-        }).then(function(data) {
-            console.log(data)
-        })
-    };
+    // function getUV(searchValue) {
+    //     var uvUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey
+    //     fetch(uvUrl).then(function(response) {
+    //         return response.json()
+    //     }).then(function(data) {
+    //         console.log(data)
+    //     })
+    // };
 
 
 });
