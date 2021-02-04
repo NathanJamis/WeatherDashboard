@@ -1,10 +1,9 @@
 $(document).ready(function() {
-    // create some sort of click event 
+ 
     $('#searchButton').on("click", function() {
         
         var searchValue = $('#searchInput').val();
 
-        // clear input box
         $('#searchInput').val(" ");
 
         searchCity(searchValue);
@@ -15,7 +14,6 @@ $(document).ready(function() {
         searchCity($(this).text());
     });
 
-    // hide before deploying
     var apiKey = "13a80175fbe3aedef498bcdf08bd27a4";
 
     // to make a function to make seperate row for text 
@@ -34,16 +32,15 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 // create history link for this search 
-                // if (history.indexOf(searchValue) === -1) {
-                //     history.push(searchValue);
-                //     window.localStorage.setItem("history", JSON.stringify(history));
+                if (history.indexOf(searchValue) === -1) {
+                    history.push(searchValue);
+                    window.localStorage.setItem("history", JSON.stringify(history));
 
-                //     makeRow(searchValue)
-                // }
+                    makeRow(searchValue)
+                }
                 // clear old content 
                 $("#current").empty();
 
-                // create html conent for current weather 
                 var title = $("<h2>").addClass("card-title").text(data.name + " (" + new Date().toLocaleDateString() + ") ");
                 var cardBody = $("<div>").addClass("card-body");
                 var card = $("<div>").addClass("card");
@@ -53,7 +50,6 @@ $(document).ready(function() {
                 var temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " F");
                 var img  = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
 
-                // merge and add to the page
                 cardBody.append(title, img, temp, humid, wind)
                 card.append(cardBody);
                 $('#current').append(card);
@@ -75,6 +71,7 @@ $(document).ready(function() {
                 };
 
                 // call follow-up api endpoints
+                
                 // get5Day(searchValue);
                 getUV(data.coord.lat, data.coord.lon);
             } 
