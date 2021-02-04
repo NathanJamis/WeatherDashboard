@@ -1,5 +1,7 @@
 $(document).ready(function() {
  
+    $("#5day").hide();
+
     $('#searchButton').on("click", function() {
         
         var searchValue = $('#searchInput').val();
@@ -16,13 +18,10 @@ $(document).ready(function() {
 
     var apiKey = "13a80175fbe3aedef498bcdf08bd27a4";
 
-    // to make a function to make seperate row for text 
     function makeRow(text) {
-        var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
+        var li = $("<li>").addClass("data.list-group-item data.list-group-item-action").text(text);
         $(".history").append(li);
-    }
-
-    // makeRow();
+    };
 
     function searchCity(searchValue) {
 
@@ -32,13 +31,13 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 // create history link for this search 
-                if (history.indexOf(searchValue) === -1) {
-                    history.push(searchValue);
-                    window.localStorage.setItem("history", JSON.stringify(history));
+                // if (history.indexOf(searchValue) === -1) {
+                //     history.push(searchValue);
+                //     window.localStorage.setItem("history", JSON.stringify(history));
 
-                    makeRow(searchValue)
-                }
-                // clear old content 
+                //     makeRow(searchValue)
+                // };
+
                 $("#current").empty();
 
                 var title = $("<h2>").addClass("card-title").text(data.name + " (" + new Date().toLocaleDateString() + ") ");
@@ -72,7 +71,7 @@ $(document).ready(function() {
 
                 // call follow-up api endpoints
                 
-                // get5Day(searchValue);
+                get5Day(searchValue);
                 getUV(data.coord.lat, data.coord.lon);
             } 
         });
@@ -84,7 +83,52 @@ $(document).ready(function() {
             url: "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey + "&units=imperial",
             dataType: "json",
             success: function(data) {
+                $("#5day").show();
 
+                var day1 = $(".day1").text(data.list[0].dt_text);
+                $(".day1").append(day1);
+
+                var temp1 = $(".temp1").text(data.list[0].main.temp);
+                $(".temp1").append(temp1);
+
+                var humidity1 = $(".humidity1").text(data.list[0].main.humidity);
+                $(".humidity1").append(humidity1);
+
+                var day2 = $(".day2").text(data.list[9].dt_text);
+                $(".day2").append(day1);
+
+                var temp2 = $(".temp2").text(data.list[9].main.temp);
+                $(".temp2").append(temp1);
+
+                var humidity2 = $(".humidity2").text(data.list[9].main.humidity);
+                $(".humidity2").append(humidity1);
+
+                var day3 = $(".day3").text(data.list[17].dt_text);
+                $(".day3").append(day1);
+
+                var temp3 = $(".temp3").text(data.list[17].main.temp);
+                $(".temp3").append(temp1);
+
+                var humidity3 = $(".humidity3").text(data.list[17].main.humidity);
+                $(".humidity3").append(humidity1);
+
+                var day4 = $(".day4").text(data.list[25].dt_text);
+                $(".day4").append(day1);
+
+                var temp4 = $(".temp4").text(data.list[25].main.temp);
+                $(".temp4").append(temp1);
+
+                var humidity4 = $(".humidity4").text(data.list[25].main.humidity);
+                $(".humidity4").append(humidity1);
+
+                var day5 = $(".day5").text(data.list[33].dt_text);
+                $(".day5").append(day1);
+
+                var temp5 = $(".temp5").text(data.list[33].main.temp);
+                $(".temp5").append(temp1);
+
+                var humidity5 = $(".humidity5").text(data.list[33].main.humidity);
+                $(".humidity5").append(humidity1);
             }
         })
     };
@@ -95,8 +139,8 @@ $(document).ready(function() {
 
 
     //     var currentUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=" + apiKey
-    //     fetch(currentUrl).then(function(response) {
-    //         return response.json()
+    //     fetch(currentUrl).then(function(data) {
+    //         return data.json()
     //     }).then(function(data) {
     //         console.log(data)
     //     })
@@ -104,8 +148,8 @@ $(document).ready(function() {
 
     // function get5Day(searchValue) {
     //     var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey
-    //     fetch(forecastUrl).then(function(response) {
-    //         return response.json()
+    //     fetch(forecastUrl).then(function(data) {
+    //         return data.json()
     //     }).then(function(data) {
     //         console.log(data)
     //     })
@@ -113,8 +157,8 @@ $(document).ready(function() {
 
     // function getUV(searchValue) {
     //     var uvUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey
-    //     fetch(uvUrl).then(function(response) {
-    //         return response.json()
+    //     fetch(uvUrl).then(function(data) {
+    //         return data.json()
     //     }).then(function(data) {
     //         console.log(data)
     //     })
