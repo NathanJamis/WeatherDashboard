@@ -16,10 +16,13 @@ This repo uses Javascript to setup a Weather Dashboard for the user.
 ## Visuals and Demo:
 
 Screenshot:
+---
 ![Screenshot](https://github.com/NathanJamis/WeatherDashboard/blob/main/Assets/screenshot.png)
 
 Gif:
+---
 ![Gif](https://github.com/NathanJamis/WeatherDashboard/blob/main/Assets/demo.gif)
 
 Link to deployed application:
-[Link]()
+---
+[Weather Dashboard](https://nathanjamis.github.io/WeatherDashboard/)
