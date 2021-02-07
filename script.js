@@ -68,8 +68,17 @@ $(document).ready(function() {
                         url: "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey,
                         dataType: "json",
                         success: function(data) {
-                            var uvIndex = $("<p>").addClass("card-text").text("UV Index: " + data.value);
-                            cardBody.append(uvIndex)
+                            var uvIndex = $("<p>").addClass("card-text").text("UV Index: ");
+                            var uvBtn = $("<button>").addClass("btn").text(data.value);
+                            cardBody.append(uvIndex);
+                            uvIndex.append(uvBtn);
+                            if (data.value < 3) {
+                                uvBtn.addClass("btn-success");
+                            } else if (data.value > 7) {
+                                uvBtn.addClass("btn-danger");
+                            } else {
+                                uvBtn.addClass("btn-warning");
+                            }
                         }
                     })
                 };
